@@ -14,7 +14,7 @@ export default class NewApi {
     const axiosApi = axios.create({
       baseURL: `https://pixabay.com/api/`,
     });
-    const API_KEY = '29770442-603a95234869127783f60906d';
+    const API_KEY = '30088439-f58bb35369039d74d15963769';
     const result = await axiosApi.get(
       `?key=${API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
     );
