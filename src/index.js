@@ -14,7 +14,7 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', onSubmit);
-refs.loadBtn.addEventListener('click', onLoadMore);
+// refs.loadBtn.addEventListener('click', onLoadMore);
 
 const newApi = new NewApi();
 
@@ -47,7 +47,8 @@ async function findPictureRenderUi() {
       refs.loadBtn.classList.add('is-hidden');
       return Notiflix.Notify.failure(`Please enter a query`);
     }
-    if (newApi.length < 20) {
+    if (newApi.length < 30) {  //   отключил кнопку
+      
       refs.loadBtn.classList.add('is-hidden');
     } else {
       refs.loadBtn.classList.remove('is-hidden');
