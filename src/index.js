@@ -26,6 +26,12 @@ function onSubmit(e) {
   newApi.searchQuery = e.currentTarget.elements.searchQuery.value.trim();
 
   newApi.resetPage();
+
+  if (newApi.searchQuery === '') 
+  {
+    return Notiflix.Notify.failure(`Please enter a query`);
+  }
+
   findPictureRenderUi();
 }
 
@@ -43,10 +49,10 @@ async function findPictureRenderUi() {
     const answerFromApi = await newApi.findPicture();
     console.log(newApi.length);
 
-    if (newApi.query === '') {
-      refs.loadBtn.classList.add('is-hidden');
-      return Notiflix.Notify.failure(`Please enter a query`);
-    }
+    // if (newApi.query === '') {
+    //   refs.loadBtn.classList.add('is-hidden');
+    //   return Notiflix.Notify.failure(`Please enter a query`);
+    // }
     if (newApi.length < 20) {
       
       refs.loadBtn.classList.add('is-hidden');
