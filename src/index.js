@@ -14,7 +14,7 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', onSubmit);
-// refs.loadBtn.addEventListener('click', onLoadMore);
+refs.loadBtn.addEventListener('click', onLoadMore);
 
 const newApi = new NewApi();
 
@@ -47,7 +47,7 @@ async function findPictureRenderUi() {
       refs.loadBtn.classList.add('is-hidden');
       return Notiflix.Notify.failure(`Please enter a query`);
     }
-    if (newApi.length < 30) {  //   отключил кнопку
+    if (newApi.length < 20) {
       
       refs.loadBtn.classList.add('is-hidden');
     } else {
@@ -91,48 +91,3 @@ function slowScroll() {
   });
 }
 
-(() => {
-  window.addEventListener('scroll', throttle(checkPosition, 250))
-  window.addEventListener('resize', throttle(checkPosition, 250))
-})()
-
-function throttle(callee, timeout) {
-  let timer = null
-
-  return function perform(...args) {
-    if (timer) return
-
-    timer = setTimeout(() => {
-      callee(...args)
-
-      clearTimeout(timer)
-      timer = null
-    }, timeout)
-  }
-}
-
-
-function checkPosition() {
-  // Нам потребуется знать высоту документа и высоту экрана:
-  const height = document.body.offsetHeight
-  const screenHeight = window.innerHeight
-
-  // Они могут отличаться: если на странице много контента,
-  // высота документа будет больше высоты экрана (отсюда и скролл).
-
-  // Записываем, сколько пикселей пользователь уже проскроллил:
-  const scrolled = window.scrollY
-
-  // Обозначим порог, по приближении к которому
-  // будем вызывать какое-то действие.
-  // В нашем случае — четверть экрана до конца страницы:
-  const threshold = height - screenHeight / 4
-
-  // Отслеживаем, где находится низ экрана относительно страницы:
-  const position = scrolled + screenHeight
-
-  if (position >= threshold) {
-    onLoadMore();
-    // Если мы пересекли полосу-порог, вызываем нужное действие.
-  }
-}
