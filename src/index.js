@@ -47,7 +47,7 @@ async function findPictureRenderUi() {
       refs.loadBtn.classList.add('is-hidden');
       return Notiflix.Notify.failure(`Please enter a query`);
     }
-    if (newApi.length < 40) {
+    if (newApi.length < 20) {
       refs.loadBtn.classList.add('is-hidden');
     } else {
       refs.loadBtn.classList.remove('is-hidden');
@@ -65,9 +65,6 @@ async function findPictureRenderUi() {
 async function loadMoreRenderUi() {
   try {
     const loadMoreAnswerFromApi = await newApi.findPicture();
-    // if (newApi.length < 40) {
-    //   refs.loadBtn.classList.add('is-hidden');
-    // }
     if (newApi.length === 0) {
       refs.loadBtn.classList.add('is-hidden');
       Notiflix.Notify.failure(

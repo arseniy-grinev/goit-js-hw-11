@@ -16,7 +16,7 @@ export default class NewApi {
     });
     const API_KEY = '30088439-f58bb35369039d74d15963769';
     const result = await axiosApi.get(
-      `?key=${API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
+      `?key=${API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}`
     );
     console.log(result);
     if (result.data.totalHits === 0) {
@@ -28,8 +28,6 @@ export default class NewApi {
     this.length = result.data.hits.length;
     this.totalHits = result.data.totalHits;
 
-    // console.log(result.data.totalHits);
-    // console.log(this.totalHits);
     return result.data.hits;
   }
 
